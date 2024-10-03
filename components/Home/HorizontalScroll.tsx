@@ -3,11 +3,11 @@ import { motion, useTransform, useScroll } from 'framer-motion'
 import { useRef } from 'react'
 
 import { cn } from '@/lib/utils'
-import doctor1 from '../public/images/doctors/1.jpeg'
-import doctor2 from '../public/images/doctors/2.jpeg'
-import doctor3 from '../public/images/doctors/3.jpg'
-import doctor4 from '../public/images/doctors/4.jpeg'
-import doctor5 from '../public/images/doctors/5.jpeg'
+import doctor1 from '../../public/images/doctors/1.jpeg'
+import doctor2 from '../../public/images/doctors/2.jpeg'
+import doctor3 from '../../public/images/doctors/3.jpg'
+import doctor4 from '../../public/images/doctors/4.jpeg'
+import doctor5 from '../../public/images/doctors/5.jpeg'
 import Image from 'next/image'
 
 const cards = [

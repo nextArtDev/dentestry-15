@@ -7,8 +7,8 @@ import { Circle } from './Orbitting'
 
 export default function Rotating() {
   return (
-    <section className=" ">
-      <div className="relative group h-[50vh] flex   w-full flex-col items-center justify-center overflow-hidden md:shadow-xl ">
+    <section className="z-[2] mx-auto bg-white  flex w-full  h-[70vh] md:h-screen   relative">
+      <div className="relative group h-[70vh] flex   w-full flex-col items-center justify-center overflow-hidden md:shadow-xl ">
         <span className=" whitespace-pre-wrap bg-gradient-to-b from-white/30 to-white/20 backdrop-blur-sm bg-clip-text text-center text-8xl font-semibold leading-none text-transparent ">
           <MorphingCard
             width="200px"

@@ -6,7 +6,7 @@ import Highlights from '@/components/Home/Highlights'
 import { ImageCarousel } from '@/components/Home/image-carousel/image-carousel'
 import { MarqueeDemoVertical } from '@/components/Home/marquee/MarqueeVertical'
 import StickyScrollVideo from '@/components/Home/StickyScrollVideo'
-import HorizontalScrollCarousel from '@/components/HorizontalScroll'
+import HorizontalScrollCarousel from '@/components/Home/HorizontalScroll'
 
 export default function Home() {
   return (
@@ -18,7 +18,7 @@ export default function Home() {
         <HorizontalScrollCarousel rtl className="overflow-x-hidden " />
       </section>
 
-      <section className="relative w-full h-[70vh]  bg-white  ">
+      <section className="relative min-h-[70vh] overflow-hidden flex items-center justify-center ">
         <Rotating />
       </section>
       <Highlights />
