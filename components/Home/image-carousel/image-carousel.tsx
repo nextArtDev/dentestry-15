@@ -63,7 +63,7 @@ export const ImageCarousel = () => {
     'inactive'
   )
   useMotionValueEvent(scrollYProgress, 'change', (progress) => {
-    if (progress >= 0.67) {
+    if (progress >= 0.2) {
       setCarouselVariant('active')
     } else {
       setCarouselVariant('inactive')
@@ -76,7 +76,7 @@ export const ImageCarousel = () => {
       animate={carouselVariant}
       className="bg-gradient-to-t from-white to-#FC898B pb-16 z-0 "
     >
-      <div ref={carouselWrapperRef} className=" h-[220vh] overflow-clip">
+      <div ref={carouselWrapperRef} className=" h-[150vh] overflow-clip">
         <div className="sticky top-0 flex h-screen items-center">
           <div className="relative left-1/2 mb-5 flex -translate-x-1/2 gap-5">
             <motion.div

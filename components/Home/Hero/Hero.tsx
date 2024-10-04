@@ -84,7 +84,7 @@ const Hero = () => {
               height={50}
               src={tooth.src}
               alt=""
-              className="z-[3] absolute top-[5vh] left-[85%]         object-contain py-8 animate-bounce"
+              className="z-[3] absolute top-[12vh] right-[5%]         object-contain py-8 animate-bounce"
             />
             <Orbiting />
           </figure>

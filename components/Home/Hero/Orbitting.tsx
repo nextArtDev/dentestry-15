@@ -111,7 +111,7 @@ const Content = ({ children }: { children: ReactNode }) => {
   return (
     <article
       style={{ borderRadius: '999' }}
-      className="!p-2 border w-44 h-auto flex items-center justify-center text-center text-[rebeccapurple]/80 bg-white/10 backdrop-blur-sm rounded-full font-semibold "
+      className="!p-2   w-44 h-auto flex items-center justify-center text-center text-[rebeccapurple]/80 bg-white/10 backdrop-blur-sm rounded-full font-semibold "
     >
       {children}
     </article>

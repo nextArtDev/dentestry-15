@@ -7,9 +7,9 @@ import { Circle } from './Orbitting'
 
 export default function Rotating() {
   return (
-    <section className="z-[2] mx-auto bg-white  flex w-full  h-[70vh] md:h-screen   relative">
-      <div className="relative group h-[70vh] flex   w-full flex-col items-center justify-center overflow-hidden md:shadow-xl ">
-        <span className=" whitespace-pre-wrap bg-gradient-to-b from-white/30 to-white/20 backdrop-blur-sm bg-clip-text text-center text-8xl font-semibold leading-none text-transparent ">
+    <section className="z-[2] mx-auto bg-white  flex w-full h-[70vh]  ">
+      <div className="relative group flex h-[70vh]   w-full flex-col items-center justify-center overflow-hidden md:shadow-xl ">
+        <span className="relative whitespace-pre-wrap bg-gradient-to-b from-white/30 to-white/20 backdrop-blur-sm bg-clip-text text-center text-8xl font-semibold leading-none text-transparent ">
           <MorphingCard
             width="200px"
             height="200px"
@@ -35,125 +35,126 @@ export default function Rotating() {
             interval={4000}
           />
         </span>
+        <section className=" absolute  left-1/2 top-1/2 -translate-x-2/3 -translate-y-1/2 ">
+          <OrbitingCircles
+            path={false}
+            className="text-white  group-hover:pause z-[2] size-[30px] border-none bg-transparent"
+            radius={140}
+            duration={40}
+            delay={40}
+            reverse
+          >
+            <Content>
+              <Circle className="bg-transparent border-none ">
+                <h2>ترمیم</h2>
+              </Circle>
+            </Content>
+          </OrbitingCircles>
 
-        <OrbitingCircles
-          path={false}
-          className="text-white  group-hover:pause z-[2] size-[30px] border-none bg-transparent"
-          radius={150}
-          duration={40}
-          delay={40}
-          reverse
-        >
-          <Content>
-            <Circle className="bg-transparent border-none ">
-              <h2>ترمیم</h2>
-            </Circle>
-          </Content>
-        </OrbitingCircles>
+          <OrbitingCircles
+            path={false}
+            className="text-white group-hover:pause z-[2] size-[30px] border-none bg-transparent"
+            duration={40}
+            delay={5}
+            radius={140}
+            reverse
+          >
+            <Content>
+              <div className="bg-transparent border-none z-10 flex size-12 items-center justify-center rounded-full   ">
+                <h2>لمینت</h2>
+              </div>
+            </Content>
+          </OrbitingCircles>
+          <OrbitingCircles
+            path={false}
+            className=" group-hover:pause z-[2] size-[30px] border-none bg-transparent"
+            duration={40}
+            delay={10}
+            radius={140}
+            reverse
+          >
+            <Content>
+              <Circle className="bg-transparent border-none">
+                <h2>ایمپلنت</h2>
+              </Circle>
+            </Content>
+          </OrbitingCircles>
 
-        <OrbitingCircles
-          path={false}
-          className="text-white group-hover:pause z-[2] size-[30px] border-none bg-transparent"
-          duration={40}
-          delay={5}
-          radius={150}
-          reverse
-        >
-          <Content>
-            <div className="bg-transparent border-none z-10 flex size-12 items-center justify-center rounded-full   ">
-              <h2>لمینت</h2>
-            </div>
-          </Content>
-        </OrbitingCircles>
-        <OrbitingCircles
-          path={false}
-          className="text-white group-hover:pause z-[2] size-[30px] border-none bg-transparent"
-          duration={40}
-          delay={10}
-          radius={150}
-          reverse
-        >
-          <Content>
-            <Circle className="bg-transparent border-none">
-              <h2>ایمپلنت</h2>
-            </Circle>
-          </Content>
-        </OrbitingCircles>
-
-        <OrbitingCircles
-          path={false}
-          className="text-white group-hover:pause z-[2] size-[50px] border-none bg-transparent"
-          radius={150}
-          duration={40}
-          delay={15}
-          reverse
-        >
-          <Content>
-            <Circle className="bg-transparent border-none">
-              <h2> روکش دندان</h2>
-            </Circle>
-          </Content>
-        </OrbitingCircles>
-        <OrbitingCircles
-          path={false}
-          className="text-white group-hover:pause z-[2] size-[50px] border-none bg-transparent"
-          radius={150}
-          duration={40}
-          delay={20}
-          reverse
-        >
-          <Content>
-            <Circle className="bg-transparent border-none">
-              <h2>دندان مصنوعی</h2>
-            </Circle>
-          </Content>
-        </OrbitingCircles>
-        <OrbitingCircles
-          path={false}
-          className="group-hover:pause z-[2] size-[50px] border-none bg-transparent"
-          radius={150}
-          duration={40}
-          delay={25}
-          reverse
-        >
-          <Content>
-            <Circle className="bg-transparent border-none">
-              <h2>جراحی لثه</h2>
-            </Circle>
-          </Content>
-        </OrbitingCircles>
-        <OrbitingCircles
-          path={false}
-          className="group-hover:pause z-[2] size-[50px] border-none bg-transparent"
-          radius={150}
-          duration={40}
-          delay={30}
-          reverse
-        >
-          <Content>
-            <Circle className="bg-transparent border-none">
-              <h2>ارتودنسی</h2>
-            </Circle>
-          </Content>
-        </OrbitingCircles>
-        <OrbitingCircles
-          path={false}
-          className="group-hover:pause z-[2] size-[50px] border-none bg-transparent"
-          radius={150}
-          duration={40}
-          delay={35}
-          reverse
-        >
-          <Content>
-            <Circle className="bg-transparent border-none">
-              <h2>ارتودنسی</h2>
-            </Circle>
-          </Content>
-        </OrbitingCircles>
+          <OrbitingCircles
+            path={false}
+            className="text-white group-hover:pause z-[2] size-[50px] border-none bg-transparent"
+            radius={140}
+            duration={40}
+            delay={15}
+            reverse
+          >
+            <Content>
+              <Circle className="bg-transparent border-none">
+                <h2> روکش دندان</h2>
+              </Circle>
+            </Content>
+          </OrbitingCircles>
+          <OrbitingCircles
+            path={false}
+            className="text-white group-hover:pause z-[2] size-[50px] border-none bg-transparent"
+            radius={140}
+            duration={40}
+            delay={20}
+            reverse
+          >
+            <Content>
+              <Circle className="bg-transparent border-none">
+                <h2>دندان مصنوعی</h2>
+              </Circle>
+            </Content>
+          </OrbitingCircles>
+          <OrbitingCircles
+            path={false}
+            className="group-hover:pause z-[2] size-[50px] border-none bg-transparent"
+            radius={140}
+            duration={40}
+            delay={25}
+            reverse
+          >
+            <Content>
+              <Circle className="bg-transparent border-none">
+                <h2>جراحی لثه</h2>
+              </Circle>
+            </Content>
+          </OrbitingCircles>
+          <OrbitingCircles
+            path={false}
+            className="group-hover:pause z-[2] size-[50px] border-none bg-transparent"
+            radius={140}
+            duration={40}
+            delay={30}
+            reverse
+          >
+            <Content>
+              <Circle className="bg-transparent border-none">
+                <h2>ارتودنسی</h2>
+              </Circle>
+            </Content>
+          </OrbitingCircles>
+          <OrbitingCircles
+            path={false}
+            className="group-hover:pause z-[2] size-[50px] border-none bg-transparent"
+            radius={140}
+            duration={40}
+            delay={35}
+            reverse
+          >
+            <Content>
+              <Circle className="bg-transparent border-none">
+                <h2>ارتودنسی</h2>
+              </Circle>
+            </Content>
+          </OrbitingCircles>
+        </section>
         {/* <OrbitingCircles
         path={false}
         className="group-hover:pause z-[2] size-[50px] border-none bg-transparent"
-        radius={150}
+        radius={140}
         duration={40}
         delay={40}
         reverse
@@ -173,7 +174,7 @@ const Content = ({ children }: { children: ReactNode }) => {
   return (
     <article
       style={{ borderRadius: '999' }}
-      className="p-1 text-xs md:text-sm h-auto flex items-center justify-center text-center text-[rebeccapurple]  glass backdrop-blur-sm rounded-full font-semibold bg-transparent border-none z-10  size-24   border-2   border-[rebeccapurple]  shadow-[0_0_20px_-12px_rgba(0,0,0,0.8)]"
+      className="p-1 text-xs md:text-sm h-auto flex items-center justify-center text-center text-[rebeccapurple]  glass backdrop-blur-sm rounded-full font-semibold bg-transparent border-none z-10  size-24   "
     >
       {children}
     </article>

@@ -254,7 +254,7 @@ const VideoCarousel = () => {
       </div>
 
       <div className="relative flex-center  md:mt-10">
-        <div className="flex-center py-5 md:py-6 px-7 bg-gray-500 backdrop-blur rounded-full">
+        <div className="flex-center py-5 md:py-6 px-7 bg-gray-400 glass backdrop-blur rounded-full">
           {videoRef.current.map((_, i) => (
             <div
               key={i}
@@ -277,7 +277,7 @@ const VideoCarousel = () => {
           ))}
         </div>
 
-        <button className="relative !bg-gray-500 control-btn">
+        <button className="relative bg-gray-500 glass control-btn">
           <Image
             className="fill "
             src={isLastVideo ? ReplayImg : !isPlaying ? PlayImg : PauseImg}
