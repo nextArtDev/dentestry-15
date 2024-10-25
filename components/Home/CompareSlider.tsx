@@ -26,7 +26,7 @@ const CompareSlider = ({
   className,
 }: CompareSliderProps) => {
   const containerRef = useRef(null)
-  const [sliderPosition, setSliderPosition] = useState(50)
+  const [sliderPosition, setSliderPosition] = useState(index === 1 ? 0 : 100)
 
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -57,6 +57,7 @@ const CompareSlider = ({
     >
       <div className="relative  w-[98vw] h-[50vh] max-w-4xl shadow-2xl rounded-lg overflow-hidden">
         <ReactCompareSlider
+          // defaultValue={index === 0 ? 1 : 100}
           itemOne={
             <div className=" w-[98vw] h-[50vh] ">
               <Image
@@ -83,9 +84,18 @@ const CompareSlider = ({
               </div>
             </div>
           }
+          // position={50}
           position={sliderPosition}
           onPositionChange={setSliderPosition}
-          handle={<ReactCompareSliderHandle linesStyle={{ opacity: 0 }} />}
+          handle={
+            <ReactCompareSliderHandle
+              style={{ color: 'yellow', border: 'none' }}
+              linesStyle={{ opacity: 0 }}
+              buttonStyle={{
+                display: 'none',
+              }}
+            />
+          }
         />
         {disableHandle && (
           <div className="absolute inset-0 bg-transparent z-[1]  "></div>
