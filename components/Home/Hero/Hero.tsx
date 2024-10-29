@@ -79,15 +79,15 @@ const Hero = () => {
               className="z-[1]  object-contain w-fit px-10"
               // sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
             />
-            <Image
-              width={52}
-              height={50}
-              src={tooth.src}
-              alt=""
-              className="z-[3] absolute top-[12vh] right-[5%]         object-contain py-8 animate-bounce"
-            />
             <Orbiting />
           </figure>
+          <Image
+            width={52}
+            height={50}
+            src={tooth.src}
+            alt=""
+            className="z-[3] absolute top-[12vh] right-[5%]    md:right-[20%] md:top-0 lg:right-[30%] lg:top-0     object-contain py-8 animate-bounce"
+          />
 
           <Works />
         </article>

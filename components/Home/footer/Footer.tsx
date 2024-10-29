@@ -123,7 +123,7 @@ export default function Footer() {
               </h1>
               <TextareaAutosize
                 placeholder="درج دیدگاه..."
-                className="w-full md:w-[70%] text-[rebeccapurple] resize-none appearance-none overflow-hidden bg-black/30 p-2 border rounded-lg text-xl font-bold focus:outline-none placeholder:text-[rebeccapurple]/40 "
+                className="w-full md:mx-auto md:w-[70%] text-[rebeccapurple] resize-none appearance-none overflow-hidden bg-black/30 p-2 border rounded-lg text-xl font-bold focus:outline-none placeholder:text-[rebeccapurple]/40 "
                 // {...field}
                 // {...rest}
               />
@@ -182,7 +182,7 @@ export default function Footer() {
                 )}
               /> */}
               <Button
-                className="relative border border-white/50  "
+                className="relative border border-white/50 md:w-fit md:mx-auto "
                 type="submit"
                 variant={'secondary'}
               >
@@ -194,7 +194,7 @@ export default function Footer() {
         <Container className="not-prose items-center justify-between border-t text-sm md:flex">
           <p dir="ltr" className="text-muted-foreground">
             ©<a href="https://github.com/brijr/components">Saeid Mehmanparst</a>
-            . All rights reserved. 2024-present.
+            . All rights reserved. 2024.
           </p>
         </Container>
       </section>
