@@ -60,7 +60,7 @@ const Hero = () => {
               className="text-3xl font-bold pt-8"
               variants={textVariants}
             >
-              دکتر کتایون کلانترمعتمدی
+              دکتر کتایون احمدی
             </motion.h2>
             <motion.h1
               variants={textVariants}

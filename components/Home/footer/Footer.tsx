@@ -119,7 +119,7 @@ export default function Footer() {
               className="not-prose flex flex-col gap-4 text-center "
             >
               <h1 className="text-center text-[rebeccapurple] text-base font-semibold sm:text-lg">
-                درج نظر و دیدگاه درباره دکتر کلانتری
+                دکتر کتایون احمدی
               </h1>
               <TextareaAutosize
                 placeholder="درج دیدگاه..."
