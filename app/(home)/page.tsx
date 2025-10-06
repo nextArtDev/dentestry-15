@@ -8,6 +8,7 @@ import { MarqueeDemoVertical } from '@/components/Home/marquee/MarqueeVertical'
 import StickyScrollVideo from '@/components/Home/StickyScrollVideo'
 import HorizontalScrollCarousel from '@/components/Home/HorizontalScroll'
 import PersonnelCarousel from '@/components/Home/orbit-carousel'
+import CompareBetweenTextDemo from '@/components/Home/compare-between-text'
 
 export default function Home() {
   return (
@@ -27,7 +28,9 @@ export default function Home() {
         <ImageCarousel />
       </section>
       <StickyScrollVideo />
+      <CompareBetweenTextDemo />
       <CompareSlides />
+
       <section className="flex gap-2">
         <MarqueeDemoVertical />
       </section>
