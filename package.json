@@ -67,6 +67,7 @@
     "react-resizable-panels": "^3.0.6",
     "react-textarea-autosize": "^8.5.9",
     "react-use": "^17.6.0",
+    "react-use-measure": "^2.1.7",
     "react-wrap-balancer": "^1.1.1",
     "recharts": "2.15.4",
     "reeact-dom": "^1.0.0",
