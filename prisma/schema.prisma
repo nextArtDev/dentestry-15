@@ -15,24 +15,36 @@ enum Role {
 }
 
 model User {
-  id                  String    @id
-  name                String    @db.Text
-  role                Role      @default(user)
+  id                  String        @id
+  name                String        @db.Text
+  role                Role          @default(user)
   email               String
-  emailVerified       Boolean   @default(false)
-  image               String?   @db.Text
-  createdAt           DateTime  @default(now())
-  updatedAt           DateTime  @default(now()) @updatedAt
-  banned              Boolean?  @default(false)
-  banReason           String?   @db.Text
+  emailVerified       Boolean       @default(false)
+  image               String?       @db.Text
+  createdAt           DateTime      @default(now())
+  updatedAt           DateTime      @default(now()) @updatedAt
+  banned              Boolean?      @default(false)
+  banReason           String?       @db.Text
   banExpires          DateTime?
-  phoneNumber         String?   @db.Text
+  phoneNumber         String?       @db.Text
   phoneNumberVerified Boolean?
   sessions            Session[]
   accounts            Account[]
+  Image               Image?        @relation(fields: [imageId], references: [id])
+  imageId             String?
+  Review              Review[]
+  Appointment         Appointment[]
 
   @@unique([email])
   @@map("user")
+}
+
+model OtpRateLimit {
+  id          String   @id @default(uuid())
+  phoneNumber String   @unique
+  lastSentAt  DateTime
+
+  @@index([phoneNumber])
 }
 
 model Session {
@@ -81,10 +93,202 @@ model Verification {
   @@map("verification")
 }
 
-model PaymentRateLimit {
-  id        String   @id @default(cuid())
-  userId    String
-  createdAt DateTime @default(now())
+model Doctor {
+  id          String  @id @default(cuid())
+  name        String
+  phone       String?
+  website     String?
+  description String? @db.Text
+  // open_time   DateTag[]
+  // slug              String?         @unique
+  // price       Int
 
-  @@index([userId, createdAt])
+  images         Image[]
+  specialization Specialization[]
+  created_at     DateTime         @default(now())
+  updated_at     DateTime         @updatedAt
+  reviews        Review[]
+
+  exceptions     ScheduleException[]
+  appointments   Appointment[]
+  WeeklySchedule WeeklySchedule[]
+}
+
+model Specialization {
+  id          String   @id @default(uuid())
+  name        String
+  description String?  @db.Text
+  doctors     Doctor[]
+  images      Image[]
+  icon        Image?   @relation("iconImage")
+  imageId     String
+  created_at  DateTime @default(now())
+  updated_at  DateTime @updatedAt
+}
+
+model Image {
+  id         String   @id @default(cuid())
+  url        String   @db.Text
+  key        String   @db.Text
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+
+  user User[]
+
+  Doctor           Doctor?         @relation(fields: [doctorId], references: [id])
+  doctorId         String?
+  Specialization   Specialization? @relation(fields: [specializationId], references: [id])
+  specializationId String?
+
+  specializationIcon   Specialization? @relation("iconImage", fields: [specializationIconId], references: [id])
+  specializationIconId String?
+  // @@index([illnessId])
+  // @@index([specializationId])
+  // @@index([doctorId])
+  // @@index([galleryId])
+  Personnel            Personnel?      @relation(fields: [personnelId], references: [id])
+  personnelId          String?
+
+  @@unique([specializationIconId])
+  @@unique([specializationId])
+  @@unique([personnelId])
+}
+
+model Personnel {
+  id          String @id @default(cuid())
+  name        String
+  description String
+
+  images Image[]
+
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+}
+
+model WeeklySchedule {
+  id           String  @id @default(cuid())
+  dayOfWeek    Int // 0=Sunday, 1=Monday, ..., 6=Saturday
+  startTime    String // "09:00"
+  endTime      String // "17:00"
+  slotDuration Int // minutes (15, 30, 45, 60)
+  isActive     Boolean @default(true)
+
+  // Optional: Break times
+  breakStartTime String? // "12:00"
+  breakEndTime   String? // "13:00"
+
+  doctor   Doctor @relation(fields: [doctorId], references: [id], onDelete: Cascade)
+  doctorId String
+
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+
+  @@unique([doctorId, dayOfWeek])
+  @@index([doctorId])
+}
+
+model ScheduleException {
+  id     String        @id @default(cuid())
+  date   DateTime      @db.Date
+  type   ExceptionType
+  reason String?
+
+  // For CUSTOM_HOURS type
+  startTime String? // Custom start time for this date
+  endTime   String? // Custom end time for this date
+
+  doctor   Doctor @relation(fields: [doctorId], references: [id], onDelete: Cascade)
+  doctorId String
+
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+
+  @@unique([doctorId, date])
+  @@index([doctorId, date])
+}
+
+enum ExceptionType {
+  BLOCKED // Day off, vacation
+  CUSTOM_HOURS // Different hours than usual
+}
+
+model Appointment {
+  id String @id @default(cuid())
+
+  // Date & Time
+  date      DateTime @db.Date
+  startTime String // "09:00"
+  endTime   String // "09:30"
+  duration  Int // minutes
+
+  // Status
+  status AppointmentStatus @default(PENDING)
+
+  // Patient info (can differ from user account)
+  patientName  String
+  patientPhone String
+  patientEmail String?
+  symptoms     String? @db.Text
+  notes        String? @db.Text
+
+  // Cancellation
+  cancelledAt  DateTime?
+  cancelReason String?   @db.Text
+  cancelledBy  String? // USER or DOCTOR or ADMIN
+
+  // Relations
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId String
+
+  doctor   Doctor @relation(fields: [doctorId], references: [id], onDelete: Cascade)
+  doctorId String
+
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+
+  // Prevent double booking
+  @@unique([doctorId, date, startTime])
+  @@index([userId])
+  @@index([doctorId])
+  @@index([doctorId, date])
+  @@index([status])
+  @@index([date])
+}
+
+enum AppointmentStatus {
+  PENDING // Awaiting confirmation
+  CONFIRMED // Confirmed
+  COMPLETED // Appointment finished
+  CANCELLED // Cancelled
+  NO_SHOW // Patient didn't show up
+  RESCHEDULED // Moved to different time
+}
+
+model Faq {
+  id String @id @default(uuid())
+
+  question String @db.Text
+  answer   String @db.Text
+
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+}
+
+model Review {
+  id String @id @default(uuid())
+
+  comment           String   @db.Text
+  rating            Float
+  created_at        DateTime @default(now())
+  updated_at        DateTime @updatedAt
+  doctor            Doctor?  @relation(fields: [doctorId], references: [id])
+  doctorId          String?
+  isFaq             Boolean  @default(false)
+  shouldBePublished Boolean  @default(false)
+
+  user   User?   @relation(fields: [userId], references: [id])
+  userId String?
+
+  @@index([doctorId])
+  @@index([userId])
 }
