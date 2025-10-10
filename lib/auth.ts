@@ -4,6 +4,8 @@ import { prismaAdapter } from 'better-auth/adapters/prisma'
 import { nextCookies } from 'better-auth/next-js'
 import { admin, phoneNumber } from 'better-auth/plugins'
 import prisma from './prisma'
+import { cache } from 'react'
+import { headers } from 'next/headers'
 export const auth = betterAuth({
   database: prismaAdapter(prisma, {
     provider: 'mysql', // or "mysql", "postgresql", ...etc
@@ -83,4 +85,32 @@ export const auth = betterAuth({
   // advanced: {
   //   generateId: false, // Let Prisma handle ID generation
   // },
+})
+
+export type Session = typeof auth.$Infer.Session
+export type User = typeof auth.$Infer.Session.user
+
+export const currentUser = cache(async () => {
+  'use server'
+  const session = await auth.api.getSession({
+    headers: await headers(),
+  })
+
+  if (!session?.user?.id) {
+    return null
+  }
+
+  // Fetch the complete user data including role
+  const user = await prisma.user.findUnique({
+    where: { id: session.user.id },
+    select: {
+      id: true,
+      name: true,
+      email: true,
+      phoneNumber: true,
+      role: true,
+    },
+  })
+
+  return user
 })
