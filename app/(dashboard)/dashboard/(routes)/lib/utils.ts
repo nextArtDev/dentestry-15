@@ -22,3 +22,17 @@ export function generateTimeSlots(
 
   return slots
 }
+
+export function translateDays(input: string): string {
+  const translationMap: { [key: string]: string } = {
+    Saturday: 'شنبه',
+    Sunday: 'یکشنبه',
+    Monday: 'دوشنبه',
+    Tuesday: 'سه‌شنبه',
+    Wednesday: 'چهارشنبه',
+    Thursday: 'پنجشنبه',
+    Friday: 'جمعه',
+  }
+
+  return translationMap[input]
+}
