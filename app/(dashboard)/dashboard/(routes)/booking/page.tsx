@@ -1,5 +1,3 @@
-import React from 'react'
-
 import { format } from 'date-fns-jalali'
 // import {
 //   getAllBookedDays,
@@ -27,9 +25,9 @@ async function page({
 
   const doctors = await prisma.doctor.findMany({
     include: {
-      availability: {
+      availabilities: {
         include: {
-          times: true,
+          timeSlots: true,
         },
       },
     },
