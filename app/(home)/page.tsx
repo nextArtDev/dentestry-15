@@ -28,7 +28,7 @@ export default function Home() {
         <ImageCarousel />
       </section>
       <StickyScrollVideo />
-      <CompareBetweenTextDemo />
+      {/* <CompareBetweenTextDemo /> */}
       <CompareSlides />
 
       <section className="flex gap-2">
